@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		9E922F8826821D6B00D2DDCA /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E922F8726821D6B00D2DDCA /* LoginPresenter.swift */; };
+		9E922F8C26822E4000D2DDCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E922F8B26822E4000D2DDCA /* AppDelegate.swift */; };
 		B6E310450BD42485F4E20399 /* Pods_ApolloIosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97773D61D0806B56C6A7A9AE /* Pods_ApolloIosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +21,8 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97773D61D0806B56C6A7A9AE /* Pods_ApolloIosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApolloIosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E922F8726821D6B00D2DDCA /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		9E922F8B26822E4000D2DDCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7E73B239D50E114A9959AC1 /* Pods-ApolloIosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApolloIosApp.debug.xcconfig"; path = "Target Support Files/Pods-ApolloIosApp/Pods-ApolloIosApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,7 +44,6 @@
 				B7E73B239D50E114A9959AC1 /* Pods-ApolloIosApp.debug.xcconfig */,
 				4E660F65B90C247AF8624C77 /* Pods-ApolloIosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -76,6 +79,8 @@
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				9E922F8726821D6B00D2DDCA /* LoginPresenter.swift */,
+				9E922F8B26822E4000D2DDCA /* AppDelegate.swift */,
 			);
 			path = ApolloIosApp;
 			sourceTree = "<group>";
@@ -174,6 +179,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E922F8C26822E4000D2DDCA /* AppDelegate.swift in Sources */,
+				9E922F8826821D6B00D2DDCA /* LoginPresenter.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flowOf
 
 class LoginRepositoryImp(private val dataSource: LoginDataSource) : LoginRepository {
 
+    @Throws(Exception::class)
     override suspend fun fetchLogin(username: String, password: String): Flow<Boolean> {
         val apolloResult = dataSource.fetchLoginStudentAsync(username, password)
 
@@ -14,7 +15,7 @@ class LoginRepositoryImp(private val dataSource: LoginDataSource) : LoginReposit
 
         apolloResult.collect { response ->
             if (response.hasErrors()) {
-                throw RuntimeException()
+                throw Exception()
             } else {
                 result = flowOf(true)
             }

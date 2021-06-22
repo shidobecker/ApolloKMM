@@ -10,9 +10,16 @@ import org.koin.dsl.module
 
 fun injectLoginSharedFeature() = loadFeature
 
+val commonModule = module {
+    single<LoginRepository> { LoginRepositoryImp(get()) }
+    factory { LoginUseCase(get()) }
+    single<LoginDataSource> { LoginApollo() }
+}
+
+
 private val loadFeature by lazy {
     loadKoinModules(
-        listOf(repository, useCase, datasource)
+        listOf(commonModule)
     )
 }
 
