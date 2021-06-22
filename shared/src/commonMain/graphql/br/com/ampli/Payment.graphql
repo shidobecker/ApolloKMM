@@ -1,0 +1,163 @@
+query findCreditCards($studentId: String!, $courseId:String!){
+    studentCreditCardsResponse: getStudentCreditCards(studentId: $studentId, courseId: $courseId){
+        ...studentCreditCardFields
+    }
+}
+
+
+query findPaymentPlan($courseId:String!, $studentId:String!){
+    paymentPlanResponse: getStudentPaymentPlan(courseId: $courseId, studentId: $studentId){
+        id
+        studentId
+        courseId
+        course{
+            id
+            name
+        }
+        billingDay
+        paymentMethod
+        numberOfInstalments
+        recurring
+        recurringChargeCreditCardId
+        recurringChargeCreditCard{
+            ...creditCardFields
+        }
+        currentInstalment {
+            ...instalmentFields
+        }
+        previousInstalments{
+            ...instalmentFields
+        }
+        futureInstalments{
+            ...instalmentFields
+        }
+        overdueInstalments {
+            ...instalmentFields
+        }
+
+
+    }
+}
+
+
+mutation payInstalmentByNewCreditCard($creditCard: NewCreditCardPaymentInput!){
+    payInstalmentByNewCreditCardResponse: payInstalmentByNewCreditCard(creditCard: $creditCard){
+        ...instalmentFields
+    }
+}
+
+mutation payInstalmentByExistingCreditCard($creditCard: ExistingCreditCardPaymentInput!){
+    payInstalmentByExistingCreditCardResponse: payInstalmentByExistingCreditCard(creditCard: $creditCard){
+        ...instalmentFields
+    }
+}
+
+mutation payInstalmentByBoleto($boleto: BoletoPaymentInput!){
+    payInstalmentByBoletoResponse: payInstalmentByBoleto(boleto: $boleto){
+        ...instalmentFields
+    }
+}
+
+mutation deleteStudentCreditCard($creditCardId: ID!){
+    deleteCreditCardResponse: deleteStudentCreditCard(studentCreditCardId: $creditCardId)
+}
+
+mutation disableRecurringPayment($courseId: String!, $studentId:String!){
+    disableRecurringPayment(courseId : $courseId, studentId:$studentId){
+        id
+    }
+}
+
+mutation enableRecurringPayment($recurring: EnableRecurringPaymentInput!){
+    enableRecurringPayment(recurring :$recurring){
+        id
+    }
+}
+
+mutation cancelPendingInstalment($instalmentId: ID!){
+    cancelPendingInstalment(instalmentId: $instalmentId){
+        id
+    }
+}
+
+
+fragment instalmentFields on Instalment {
+    id
+    instalmentNumber
+    paymentMethod
+    amount
+    totalAmount
+    discount
+    fine
+    finePercentage
+    overdueDays
+    dailyInterestPercentage
+    interest
+    dueDate
+    renewedDueDate
+    instalmentType
+    couponCode
+    status
+    boleto{
+        ...boletoFields
+    }
+    creditCard {
+        ...creditCardFields
+    }
+}
+
+fragment boletoFields on Boleto {
+    html
+    barCode
+    qrCode
+    code
+    pdf
+}
+
+fragment studentCreditCardFields on StudentCreditCard {
+    id
+    isRecurring
+    creditCard{
+        firstSixDigits
+        lastFourDigits
+        brand
+        holderName
+        expirationMonth
+        expirationYear
+        holderDocument
+        billingAddress {
+            street
+            postalCode
+            number
+            complement
+            neighbourhood
+            cityName
+            stateAcronym
+        }
+    }
+}
+
+
+
+fragment creditCardFields on CreditCard {
+    id
+    firstSixDigits
+    lastFourDigits
+    brand
+    holderName
+    expirationMonth
+    expirationYear
+    status
+    billingAddress {
+        street
+        postalCode
+        number
+        complement
+        neighbourhood
+        cityName
+        stateAcronym
+    }
+
+}
+
+

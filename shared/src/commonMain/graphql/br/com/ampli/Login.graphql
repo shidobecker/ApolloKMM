@@ -1,0 +1,58 @@
+query loginUserInfoQuery($username: String!, $captcha: CaptchaInput!) {
+    getStudentUserLoginInfo(username: $username, captcha: $captcha) {
+        userId
+        firstName
+        lastPhoneNumberDigits
+        passwordExpired
+        phoneNumberVerification {
+            verificationId
+        }
+    }
+}
+
+query sendSms($username: String!, $captcha: CaptchaInput!) {
+    sendSms(username: $username, captcha: $captcha) {
+        ...loginUserInfoFields
+    }
+}
+
+fragment loginUserInfoFields on UserLoginInfo{
+    userId
+    firstName
+    lastPhoneNumberDigits
+    passwordExpired
+    phoneNumberVerification {
+        verificationId
+    }
+}
+
+mutation loginStudentMutation($credentials: Credentials!) {
+    loginStudent(credentials: $credentials) {
+        accessToken
+        tokenType
+        expiresIn
+        scope
+    }
+}
+
+
+query meQuery {
+    meResponse: me {
+        id
+        personId
+        username
+        fullName
+        email
+        phoneNumber{
+            countryCode
+            areaCode
+            number
+        }
+        authorities: grantedAuthorities
+        termsAccepted
+        termsAcceptanceDate
+        passwordExpired
+        phoneNumberVerified
+        emailVerified
+    }
+}
