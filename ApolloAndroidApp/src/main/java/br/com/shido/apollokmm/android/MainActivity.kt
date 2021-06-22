@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViews() {
         setupButton()
+
     }
 
 
@@ -44,41 +45,28 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    private fun initObserveLoginState() {
+
+        lifecycleScope.launch {
+
+            viewModel.loginState.collectLatestData(onError =
+            ::showError, onLoading =
+            ::showLoadingAndLockViews, onSuccess = {
+                showSuccess(it)
+            })
+        }
+    }
+
     private fun setupButton() {
         with(binding) {
             button.setOnClickListener {
-                lifecycleScope.launch {
-                    viewModel.login(username.text.toString(), password.text.toString())
-
-                    viewModel.loginState.collectLatestData(onError =
-                        ::showError
-                     , onLoading =
-                        ::showLoadingAndLockViews
-                     , onSuccess = {
-                        showSuccess(it)
-                    })
-
-/*
-                    viewModel.loginState.collectLatest { uiState ->
-                        when (uiState) {
-                            is LoginUiState.Loading -> {
-                                showLoadingAndLockViews()
-                            }
-                            is LoginUiState.Error -> {
-                                showError()
-                            }
-
-                            is LoginUiState.Success -> {
-                                showSuccess(uiState)
-                            }
-                        }
-                    }*/
-                }
+                viewModel.login(username.text.toString(), password.text.toString())
+                initObserveLoginState()
             }
-
-
         }
     }
+
 
     private fun showSuccess(data: Boolean) {
         hideLoadingAndUnlockViews()
