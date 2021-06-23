@@ -132,5 +132,21 @@ class CommonFlow<T>(private val origin: Flow<T>): Flow<T> by origin {
 
 
 ```
+https://betterprogramming.pub/using-kotlin-flow-in-swift-3e7b53f559b6
+
+
+# Koin
+https://www.futuremind.com/blog/handling-kotlin-multiplatform-coroutines-koru
+https://github.com/FutureMind/koru-example
+
+# Extra content:
+
+Add dependencies to another KMM Module:
+https://kotlinlang.org/docs/mobile/add-dependencies.html#dependency-on-another-multiplatform-project
+
+Referencias:
+
+https://github.com/mitchtabian/Food2Fork-KMM
+https://github.com/dbaroncelli/D-KMP-sample
 
 
